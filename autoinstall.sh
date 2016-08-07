@@ -3,6 +3,8 @@
 CONFIG_URL=https://github.com/vadim-pavlov/vim-config/archive/master.tar.gz
 CONFIG_DIR=~/vim-config
 VIMRC_PATH=~/.vimrc
+VIM_AUTOLOAD_DIR=~/.vim/autoload
+PLUG_URL=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 die() {
     echo "$1" >&2
@@ -18,7 +20,7 @@ fail() {
 }
 
 confirm_or_abort() {
-    read -r -p "$1 [y/N] " response
+    read -r -p "$1 [y/N] " response < /dev/tty
     if ! echo $response | grep -qE '[yY][eE][sS])|[yY]'; then
         abort
     fi
@@ -47,10 +49,11 @@ install_config () {
     rm -f "$VIMRC_PATH"
     ln -s "$CONFIG_DIR/vimrc" "$VIMRC_PATH" || fail
 
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir -p "$VIM_AUTOLOAD_DIR"
 
-    vim +PluginInstall +qall || fail
+    wget -O "$VIM_AUTOLOAD_DIR/plug.vim" "$PLUG_URL"
+
+    vim +PlugInstall +qall || fail
 
     echo "Done."
 
