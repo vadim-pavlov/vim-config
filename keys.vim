@@ -14,7 +14,7 @@ set pastetoggle=<F2>
 
 " This gets rid of the distracting highlighting once you’ve found what yor are
 " looking for.
-nmap <silent> ./ :nohlsearch<CR>
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
