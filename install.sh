@@ -21,7 +21,7 @@ fail() {
 
 confirm_or_abort() {
     read -r -p "$1 [y/N] " response < /dev/tty
-    if ! echo $response | grep -qE '[yY][eE][sS])|[yY]'; then
+    if ! echo $response | grep -qE '[yY][eE][sS]|[yY]'; then
         abort
     fi
 }
