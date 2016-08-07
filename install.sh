@@ -53,7 +53,7 @@ install_config () {
 
     wget -O "$VIM_AUTOLOAD_DIR/plug.vim" "$PLUG_URL"
 
-    vim +PlugInstall +qall || fail
+    vim +PlugInstall +qall </dev/tty >/dev/tty 2>&1 || fail
 
     echo "Done."
 
