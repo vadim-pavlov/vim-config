@@ -27,6 +27,9 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" A shortcut to exit back to normal mode
+inoremap jj <ESC>
+
 " A shortcut for ':' key
 nnoremap ; :
 
