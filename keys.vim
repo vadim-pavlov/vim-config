@@ -2,7 +2,7 @@
 set backspace=indent,eol,start
 
 " Sets <leader> to the space key
-let mapleader=" "
+let mapleader=","
 
 nnoremap <silent> <leader>- :silent edit <C-R>=empty(expand('%')) ? '.' : fnameescape(expand('%:p:h'))<CR><CR>
 nnoremap <F4> :SyntasticCheck<CR>
