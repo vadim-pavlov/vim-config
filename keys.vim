@@ -34,9 +34,9 @@ inoremap jj <ESC>
 nnoremap ; :
 
 " Displays the next error from the quickfix list
-map <C-j> :cn<CR>
+map <C-D> :cn<CR>
 " Displays the previous error from the quickfix list
-map <C-k> :cp<CR>
+map <C-A> :cp<CR>
 
 let g:ycm_key_invoke_completion = '<tab>'
 let g:ycm_key_list_select_completion = ['<tab>']
