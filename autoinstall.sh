@@ -47,6 +47,9 @@ install_config () {
     rm -f "$VIMRC_PATH"
     ln -s "$CONFIG_DIR/vimrc" "$VIMRC_PATH" || fail
 
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     vim +PluginInstall +qall || fail
 
     echo "Done."
