@@ -38,6 +38,12 @@ map <C-D> :cn<CR>
 " Displays the previous error from the quickfix list
 map <C-A> :cp<CR>
 
+" Quick move around split windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 let g:ycm_key_invoke_completion = '<tab>'
 let g:ycm_key_list_select_completion = ['<tab>']
 let g:ycm_key_list_previous_completion = ['<S-tab>']
