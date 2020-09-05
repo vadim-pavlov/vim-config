@@ -40,6 +40,8 @@ Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe',
     \ { 'do': './install.py --tern-completer --clang-completer' }
 
+Plug 'leafgarland/typescript-vim'
+
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath
 call plug#end()
