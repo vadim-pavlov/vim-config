@@ -26,3 +26,5 @@ exe 'source ' s:configRoot . 'syntastic.vim'
 exe 'source ' s:configRoot . 'airline.vim'
 exe 'source ' s:configRoot . 'ctrlp.vim'
 exe 'source ' s:configRoot . 'ycm.vim'
+
+silent! so .vimlocal
