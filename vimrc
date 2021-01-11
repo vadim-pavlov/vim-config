@@ -22,9 +22,7 @@ exe 'source ' s:configRoot . 'sound.vim'
 exe 'source ' s:configRoot . 'appearance.vim'
 exe 'source ' s:configRoot . 'clipboard.vim'
 exe 'source ' s:configRoot . 'nerdtree.vim'
-exe 'source ' s:configRoot . 'syntastic.vim'
 exe 'source ' s:configRoot . 'airline.vim'
 exe 'source ' s:configRoot . 'ctrlp.vim'
-exe 'source ' s:configRoot . 'ycm.vim'
 
 silent! so .vimlocal

@@ -19,10 +19,6 @@ Plug 'scrooloose/nerdtree'
 " A fix for vim's default indentation behavior.
 Plug 'hynek/vim-python-pep8-indent'
 
-" Syntastic is a syntax checking plugin that runs files through
-" external syntax checkers and displays any resulting errors to the user.
-Plug 'scrooloose/syntastic'
-
 " Airline is a fast and lightweight status/tabline.
 Plug 'vim-airline/vim-airline'
 
@@ -36,11 +32,10 @@ Plug 'SirVer/ultisnips'
 " A collection of snippets for various programming languages.
 Plug 'honza/vim-snippets'
 
-" YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine.
-Plug 'Valloric/YouCompleteMe',
-    \ { 'do': './install.py --tern-completer --clang-completer' }
+" instant increment completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'leafgarland/typescript-vim'
+Plug 'caenrique/nvim-toggle-terminal'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath

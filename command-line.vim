@@ -8,3 +8,6 @@
 " wildmode. (http://stackoverflow.com/a/9511657/1145982)
 set wildmenu
 set wildmode=list:longest,full
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
