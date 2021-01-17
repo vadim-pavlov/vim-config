@@ -16,6 +16,11 @@ set pastetoggle=<F2>
 " looking for.
 nmap <silent> <leader>/ :nohlsearch<CR>
 
+" Substitute all occurrences of the word under the cursor
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Search the word under the cursor in all files inside the working directory
+nnoremap <Leader>S :Ag -w '<C-r><C-w>' ./<Left><Left><Left><Left>
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
 nnoremap j gj
@@ -113,3 +118,19 @@ noremap <PageDown> <Nop>
 
 nnoremap <silent> <C-z> :ToggleTerminal<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+inoremap <C-k> <C-o>gk
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-j> <C-o>gj
+
+" selects the last changed text
+nnoremap gp `[v`]

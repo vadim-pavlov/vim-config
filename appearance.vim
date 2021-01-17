@@ -66,3 +66,7 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+" highlights the current line in every window and updates
+" the highlight as the cursor moves
+set cursorline

@@ -37,6 +37,16 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'caenrique/nvim-toggle-terminal'
 
+Plug 'jeetsukumaran/vim-pythonsense'
+
+Plug 'tpope/vim-repeat'
+
+Plug 'tpope/vim-surround'
+
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+
+Plug 'mattn/emmet-vim'
+
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath
 call plug#end()

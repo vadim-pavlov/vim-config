@@ -1,8 +1,3 @@
-" Turns off Vim’s default regex characters and makes searches use
-" normal Perl regexes
-nnoremap / /\v
-vnoremap / /\v
-
 " shows the matching part of the pair for [] {} and ()
 set showmatch
 
