@@ -2,10 +2,7 @@
 set backspace=indent,eol,start
 
 " Sets <leader> to the space key
-let mapleader=","
-
-nnoremap <silent> <leader>- :silent edit <C-R>=empty(expand('%')) ? '.' : fnameescape(expand('%:p:h'))<CR><CR>
-nnoremap <F4> :SyntasticCheck<CR>
+let mapleader=" "
 
 " Enables the paste mode when <F2> key is pressed.
 " Disables auto-indenting and auto-expansion of the user input.
@@ -18,9 +15,9 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Substitute all occurrences of the word under the cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
-
 " Search the word under the cursor in all files inside the working directory
-nnoremap <Leader>S :Ag -w '<C-r><C-w>' ./<Left><Left><Left><Left>
+nnoremap <Leader>S :Rg -w "<C-r><C-w>"<Left><Left>
+nnoremap \ :Rg<SPACE>
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
 nnoremap j gj
@@ -38,9 +35,6 @@ inoremap jj <ESC>
 " A shortcut for ':' key
 nnoremap ; :
 
-" Del key in the insert mode
-imap <C-L> <C-O>"_x
-
 " Displays the next error from the quickfix list
 map <C-D> :cn<CR>
 " Displays the previous error from the quickfix list
@@ -52,16 +46,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-set <S-F3>=[1;2R
-let g:UltiSnipsExpandTrigger = "<F3>"
-let g:UltiSnipsJumpForwardTrigger = "<F3>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-F3>"
-
-if executable('ag') " if the Silver Searcher installed...
-    " Add a shortcut for it
-    nnoremap \ :Ag<SPACE>
-endif
-
+" Move with hjkl in insert mode
+inoremap <C-k> <C-o>gk
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-j> <C-o>gj
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -105,9 +94,6 @@ nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" <Esc> to exit terminal mode
-tnoremap <Esc> <C-\><C-n>
-
 " Semi-hard mode to break bad habits
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -118,19 +104,14 @@ noremap <PageDown> <Nop>
 
 nnoremap <silent> <C-z> :ToggleTerminal<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
+" <Esc> to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
 
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-inoremap <C-k> <C-o>gk
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-j> <C-o>gj
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope file_browser<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>- <cmd>lua require("telescope.builtin").file_browser({cwd = vim.fn.expand("%") and vim.fn.expand("%:p:h") or "."})<cr>
 
 " selects the last changed text
 nnoremap gp `[v`]

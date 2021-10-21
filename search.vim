@@ -12,8 +12,6 @@ set incsearch
 " globpath()
 set wildignore=*.swp,*.bak,*.pyc
 
-if executable('ag') " if the Silver Searcher installed...
-    " Use it over grep
-    set grepprg=ag\ --nogroup\ --nocolor\ --column\ $*
-    set grepformat=%f:%l:%c:%m
-endif
+set grepprg=rg\ -H\ --no-heading\ --vimgrep
+set grepformat=%f:%l:%c:%m
+command! -nargs=1 -complete=file Rg silent! grep! <args> |redraw!|cr
