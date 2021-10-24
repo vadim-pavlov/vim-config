@@ -36,9 +36,9 @@ inoremap jj <ESC>
 nnoremap ; :
 
 " Displays the next error from the quickfix list
-map <C-D> :cn<CR>
+map <C-d> :cn<CR>
 " Displays the previous error from the quickfix list
-map <C-A> :cp<CR>
+map <C-a> :cp<CR>
 
 " Quick move around split windows
 nnoremap <C-h> <C-w>h
@@ -73,27 +73,6 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
 " Semi-hard mode to break bad habits
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -113,5 +92,27 @@ nnoremap <leader>fb <cmd>Telescope file_browser<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>- <cmd>lua require("telescope.builtin").file_browser({cwd = vim.fn.expand("%") and vim.fn.expand("%:p:h") or "."})<cr>
 
+" delete without overriding the default register
+nnoremap <leader>d "0d
+vnoremap <leader>d "0d
+
+" paste without overriding the default register
+xnoremap <leader>p "0p
+
+" yank the whole file
+nnoremap <leader>Y ggyG
+
 " selects the last changed text
 nnoremap gp `[v`]
+
+" Expand or jump to available snippet
+imap <expr> <C-s> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-s>'
+smap <expr> <C-s> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-s>'
+
+" Jump to the previous placeholder
+imap <expr> <C-f> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-f>'
+smap <expr> <C-f> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-f>'
+
+" Disable ib, is, ab and as text objects provided by sandwitch in favor of
+" similar objects from trgets.vim
+let g:textobj_sandwich_no_default_key_mappings = 1

@@ -13,14 +13,13 @@ Plug 'tpope/vim-fugitive'
 " A fix for vim's default indentation behavior.
 Plug 'hynek/vim-python-pep8-indent'
 
+Plug 'tweekmonster/braceless.vim'
+
 " Airline is a fast and lightweight status/tabline.
 Plug 'vim-airline/vim-airline'
 
 " A collection of themes for vim-airline.
 Plug 'vim-airline/vim-airline-themes'
-
-" instant increment completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'caenrique/nvim-toggle-terminal'
 
@@ -38,6 +37,15 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'vadim-pavlov/telescope.nvim', {'branch': 'feat/fbrowser_file_actions'}
 
 Plug 'ap/vim-css-color'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+Plug 'rafamadriz/friendly-snippets'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath

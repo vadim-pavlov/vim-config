@@ -22,5 +22,7 @@ exe 'source ' s:configRoot . 'sound.vim'
 exe 'source ' s:configRoot . 'appearance.vim'
 exe 'source ' s:configRoot . 'clipboard.vim'
 exe 'source ' s:configRoot . 'airline.vim'
+exe 'source ' s:configRoot . 'braceless.vim'
+exe 'source ' s:configRoot . 'lsp.lua'
 
 silent! so .vimlocal
