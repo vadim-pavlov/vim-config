@@ -102,6 +102,10 @@ xnoremap <leader>p "0p
 " yank the whole file
 nnoremap <leader>Y ggyG
 
+" save the buffer if modified
+nnoremap <leader>s :update<CR>
+nnoremap <leader>ss :wa<CR>
+
 " selects the last changed text
 nnoremap gp `[v`]
 
