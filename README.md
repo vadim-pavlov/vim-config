@@ -1,4 +1,4 @@
-Quick installation
+My personal neovim config
 ==================
 To install the configuration files with all plugins simply run this command in the shell:
 
