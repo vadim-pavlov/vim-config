@@ -22,8 +22,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('v', '<leader>la', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
 
@@ -38,6 +38,44 @@ nvim_lsp.jedi_language_server.setup{
   }
 }
 
+nvim_lsp.diagnosticls.setup{
+  filetypes = { "python" },
+  init_options = {
+    filetypes = {
+      python = "flake8"
+    },
+    linters = {
+      flake8 = {
+        command = "flake8",
+        debounce = 100,
+        args = {
+          "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+          "-"
+        },
+        offsetLine = 0,
+        offsetColumn = 0,
+        sourceName = "flake8",
+        formatLines = 1,
+        formatPattern = {
+          "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+          {
+            line = 1,
+            column = 2,
+            security = 3,
+            message = 4
+          }
+        },
+        securities = {
+          W = "warning",
+          E = "error",
+          F = "error",
+          C = "error",
+          N = "error"
+        }
+      }
+    }
+  }
+}
 
 cmp.setup({
   snippet = {
