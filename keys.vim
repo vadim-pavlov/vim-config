@@ -120,3 +120,12 @@ smap <expr> <C-f> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-f>'
 " Disable ib, is, ab and as text objects provided by sandwitch in favor of
 " similar objects from trgets.vim
 let g:textobj_sandwich_no_default_key_mappings = 1
+
+let g:wordmotion_mappings = {
+\ 'w' : '<leader>w',
+\ 'b' : '<leader>b',
+\ 'e' : '<leader>e',
+\ 'ge' : 'g<leader>e',
+\ 'aw' : 'a<leader>w',
+\ 'iw' : 'i<leader>w',
+\ }
