@@ -46,6 +46,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
 Plug 'rafamadriz/friendly-snippets'
+Plug 'tommcdo/vim-exchange'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath
