@@ -14,9 +14,9 @@ set pastetoggle=<F2>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Substitute all occurrences of the word under the cursor
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 " Search the word under the cursor in all files inside the working directory
-nnoremap <Leader>S :Rg -w "<C-r><C-w>"<Left><Left>
+nnoremap <leader>S :Rg -w "<C-r><C-w>"<Left><Left>
 nnoremap \ :Rg<SPACE>
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
@@ -52,27 +52,6 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-j> <C-o>gj
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 " Semi-hard mode to break bad habits
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -90,7 +69,10 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope file_browser<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>- <cmd>lua require("telescope.builtin").file_browser({cwd = vim.fn.expand("%") and vim.fn.expand("%:p:h") or "."})<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>- <cmd>lua toggle_nvimtree_replacing()<CR>
+" copies the current file path to the default register
+nnoremap <leader>fc :let @+ = expand("%")<cr>
 
 " delete without overriding the default register
 nnoremap <leader>d "0d
@@ -103,8 +85,7 @@ xnoremap <leader>p "0p
 nnoremap <leader>Y ggyG
 
 " save the buffer if modified
-nnoremap <leader>s :update<CR>
-nnoremap <leader>ss :wa<CR>
+nnoremap <leader>  :wa<CR>
 
 " selects the last changed text
 nnoremap gp `[v`]
