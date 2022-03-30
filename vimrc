@@ -25,5 +25,6 @@ exe 'source ' s:configRoot . 'airline.vim'
 exe 'source ' s:configRoot . 'braceless.vim'
 exe 'source ' s:configRoot . 'lsp.lua'
 exe 'source ' s:configRoot . 'nvimtree.lua'
+exe 'source ' s:configRoot . 'localrc.vim'
 
 silent! so .vimlocal
