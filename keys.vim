@@ -65,10 +65,24 @@ noremap <Right> <Nop>
 noremap <PageUp> <Nop>
 noremap <PageDown> <Nop>
 
-nnoremap <silent> <C-z> :ToggleTerminal<Enter>
-tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 " <Esc> to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+inoremap <C-t>1 <esc><cmd>lua _G.term1:toggle()<cr>
+nnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
+tnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
+
+inoremap <C-t>2 <esc><cmd>lua _G.term2:toggle()<cr>
+nnoremap <C-t>2 <cmd>lua _G.term2:toggle()<cr>
+tnoremap <C-t>2 <cmd>lua _G.term2:toggle()<cr>
+
+inoremap <C-t>3 <esc><cmd>lua _G.term3:toggle()<cr>
+nnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
+tnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
+
+nnoremap <leader>ga <cmd>Git add .<cr>
+nnoremap <leader>gc <cmd>Git commit<cr>
+nnoremap <leader>gp <cmd>Git push origin<cr>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
