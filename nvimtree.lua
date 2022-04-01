@@ -7,6 +7,8 @@ _G.toggle_nvimtree_replacing = function()
     view.close()
   else
     require"nvim-tree".open_replacing_current_buffer()
+    vim.cmd("setlocal nowinfixwidth")
+    vim.cmd("setlocal nowinfixheight")
   end
 end
 
