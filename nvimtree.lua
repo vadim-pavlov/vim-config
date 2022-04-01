@@ -17,6 +17,11 @@ require"nvim-tree".setup {
         { key = "<CR>", action = "edit_in_place" }
       }
     }
+  },
+  actions = {
+    change_dir = {
+      enable = false
+    }
   }
 }
 

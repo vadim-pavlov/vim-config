@@ -27,5 +27,3 @@ exe 'source ' s:configRoot . 'lsp.lua'
 exe 'source ' s:configRoot . 'nvimtree.lua'
 exe 'source ' s:configRoot . 'localrc.vim'
 exe 'source ' s:configRoot . 'toggleterm.conf.lua'
-
-silent! so .vimlocal
