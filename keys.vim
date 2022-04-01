@@ -84,7 +84,7 @@ nnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
 tnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
 
 nnoremap <leader>ga <cmd>Git add .<cr>
-nnoremap <leader>gc <cmd>Git commit<cr>
+nnoremap <leader>gc <cmd>Git commit -v<cr>
 nnoremap <leader>gp <cmd>Git push origin<cr>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
