@@ -68,6 +68,9 @@ noremap <PageDown> <Nop>
 " <Esc> to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Disable Ctrl-t to ease it usage in combination with other keys
+noremap <C-t> <Nop>
+
 inoremap <C-t>1 <esc><cmd>lua _G.term1:toggle()<cr>
 nnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
 tnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
