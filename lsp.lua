@@ -24,18 +24,21 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>li', '<cmd>lua vim.lsp.buf.code_action({ diagnostics = vim.lsp.diagnostic.get_line_diagnostics(), only = { \'source.organizeImports\' } })<CR>', opts)
 end
 
 
 local capabilities = cmp_nvim_lsp.update_capabilities(
   vim.lsp.protocol.make_client_capabilities())
 
+local lsp_flags = {
+  debounce_text_changes = 150,
+}
+
 nvim_lsp.jedi_language_server.setup{
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  }
+  flags = lsp_flags
 }
 
 nvim_lsp.diagnosticls.setup{
@@ -75,6 +78,16 @@ nvim_lsp.diagnosticls.setup{
       }
     }
   }
+}
+
+nvim_lsp.tsserver.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    init_options = {
+        preferences = {
+            importModuleSpecifierEnding = "js"
+        }
+    }
 }
 
 cmp.setup({

@@ -49,7 +49,6 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'tommcdo/vim-exchange'
 Plug 'chaoren/vim-wordmotion'
 
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'akinsho/toggleterm.nvim'
