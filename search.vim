@@ -14,4 +14,4 @@ set wildignore=*.swp,*.bak,*.pyc
 
 set grepprg=rg\ -H\ --no-heading\ --vimgrep
 set grepformat=%f:%l:%c:%m
-command! -nargs=1 -complete=file Rg silent! grep! <args> |redraw!|cr
+command! -nargs=+ -complete=file Rg :call myripgrep#search(<q-args>)
