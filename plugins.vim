@@ -48,6 +48,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'tommcdo/vim-exchange'
 Plug 'chaoren/vim-wordmotion'
+Plug 'andymass/vim-matchup'
 
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -55,6 +56,8 @@ Plug 'akinsho/toggleterm.nvim'
 
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'kyoh86/vim-ripgrep'
+Plug 'ggandor/leap.nvim'
+Plug 'kana/vim-textobj-user'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath

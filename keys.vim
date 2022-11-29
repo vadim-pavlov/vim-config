@@ -132,3 +132,8 @@ let g:wordmotion_mappings = {
 \ 'aw' : 'a<leader>w',
 \ 'iw' : 'i<leader>w',
 \ }
+
+lua <<EOF
+vim.keymap.set({'n', 'x', 'o'}, 'z', '<Plug>(leap-forward-to)')
+vim.keymap.set({'n', 'x', 'o'}, 'Z', '<Plug>(leap-backward-to)')
+EOF
