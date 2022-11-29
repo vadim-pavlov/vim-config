@@ -49,6 +49,16 @@ function! s:setup_js_html()
 endfunction
 
 
+function! jshtml#select_js_block_a()
+    return s:select_js_block("a")
+endfunction
+
+
+function! jshtml#select_js_block_i()
+    return s:select_js_block("i")
+endfunction
+
+
 function! s:select_js_block(mode)
 
     let init_pos = getpos('.')
@@ -120,16 +130,6 @@ function! s:select_js_block(mode)
     call setpos('.', init_pos)
     return 0
 
-endfunction
-
-
-function! jshtml#select_js_block_a()
-    return s:select_js_block("a")
-endfunction
-
-
-function! jshtml#select_js_block_i()
-    return s:select_js_block("i")
 endfunction
 
 
