@@ -1,9 +1,10 @@
 " Enables Vim to show parts of the text in another font or color
 set termguicolors
 
-let g:everforest_background = 'medium'
-let g:everforest_better_performance = 1
-colorscheme everforest
+set background=dark
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 " Highlights the maximum line length. Useful to align text.
 set colorcolumn=80
