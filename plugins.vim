@@ -1,63 +1,39 @@
 call plug#begin('~/.vim/plugged')
 
-" Apprentice js a dark, low—contrast colorscheme.
-Plug 'romainl/Apprentice'
-
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'sainnhe/everforest'
 Plug 'kyazdani42/nvim-web-devicons'
-
-" Fugitive is a wrapper for Vim that complements the command line interface to
-" Git. The plugin provides an interactive window, where you can stage and
-" review your changes before the next commit or run any Git arbitrary command.
-Plug 'tpope/vim-fugitive'
-
-" A fix for vim's default indentation behavior.
-Plug 'hynek/vim-python-pep8-indent'
-
-Plug 'tweekmonster/braceless.vim'
-
-" Airline is a fast and lightweight status/tabline.
-Plug 'vim-airline/vim-airline'
-
-" A collection of themes for vim-airline.
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'caenrique/nvim-toggle-terminal'
-
-Plug 'jeetsukumaran/vim-pythonsense'
-
-Plug 'tpope/vim-repeat'
-
-Plug 'machakann/vim-sandwich'
-
-Plug 'wellle/targets.vim'
-
-Plug 'mattn/emmet-vim'
-
-Plug 'nvim-lua/plenary.nvim'
-Plug 'vadim-pavlov/telescope.nvim', {'branch': 'feat/fbrowser_file_actions'}
-
-Plug 'ap/vim-css-color'
-
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
-Plug 'rafamadriz/friendly-snippets'
-Plug 'tommcdo/vim-exchange'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'tweekmonster/braceless.vim'
+Plug 'machakann/vim-sandwich'
+Plug 'ap/vim-css-color'
 Plug 'chaoren/vim-wordmotion'
 Plug 'andymass/vim-matchup'
-
-Plug 'kyazdani42/nvim-tree.lua'
-
-Plug 'akinsho/toggleterm.nvim'
-
 Plug 'MarcWeber/vim-addon-local-vimrc'
-Plug 'kyoh86/vim-ripgrep'
-Plug 'ggandor/leap.nvim'
 Plug 'kana/vim-textobj-user'
+Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'rafamadriz/friendly-snippets'
+
+Plug 'tommcdo/vim-exchange'
+Plug 'ggandor/leap.nvim'
+Plug 'kyoh86/vim-ripgrep'
+Plug 'windwp/nvim-autopairs'
+
+Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'windwp/nvim-ts-autotag'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath

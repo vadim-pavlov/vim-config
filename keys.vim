@@ -71,27 +71,13 @@ tnoremap <Esc> <C-\><C-n>
 " Disable Ctrl-t to ease it usage in combination with other keys
 noremap <C-t> <Nop>
 
-inoremap <C-t>1 <esc><cmd>lua _G.term1:toggle()<cr>
-nnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
-tnoremap <C-t>1 <cmd>lua _G.term1:toggle()<cr>
-
-inoremap <C-t>2 <esc><cmd>lua _G.term2:toggle()<cr>
-nnoremap <C-t>2 <cmd>lua _G.term2:toggle()<cr>
-tnoremap <C-t>2 <cmd>lua _G.term2:toggle()<cr>
-
-inoremap <C-t>3 <esc><cmd>lua _G.term3:toggle()<cr>
-nnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
-tnoremap <C-t>3 <cmd>lua _G.term3:toggle()<cr>
-
 nnoremap <leader>ga <cmd>Git add .<cr>
 nnoremap <leader>gc <cmd>Git commit -v<cr>
 nnoremap <leader>gp <cmd>Git push origin<cr>
 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope file_browser<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>ff <cmd>Clap files<cr>
+nnoremap <leader>fg <cmd>Clap grep<cr>
+nnoremap <leader>fb <cmd>Clap buffers<cr>
 nnoremap <leader>- <cmd>lua toggle_nvimtree_replacing()<CR>
 " copies the current file path to the default register
 nnoremap <leader>fc :let @+ = expand("%")<cr>
@@ -103,22 +89,11 @@ vnoremap <leader>d "0d
 " paste without overriding the default register
 xnoremap <leader>p "0p
 
-" yank the whole file
-nnoremap <leader>Y ggyG
-
 " save the buffer if modified
 nnoremap <leader>  :wa<CR>
 
 " selects the last changed text
 nnoremap gp `[v`]
-
-" Expand or jump to available snippet
-imap <expr> <C-s> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-s>'
-smap <expr> <C-s> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-s>'
-
-" Jump to the previous placeholder
-imap <expr> <C-f> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-f>'
-smap <expr> <C-f> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-f>'
 
 " Disable ib, is, ab and as text objects provided by sandwitch in favor of
 " similar objects from trgets.vim
@@ -132,8 +107,3 @@ let g:wordmotion_mappings = {
 \ 'aw' : 'a<leader>w',
 \ 'iw' : 'i<leader>w',
 \ }
-
-lua <<EOF
-vim.keymap.set({'n', 'x', 'o'}, 'z', '<Plug>(leap-forward-to)')
-vim.keymap.set({'n', 'x', 'o'}, 'Z', '<Plug>(leap-backward-to)')
-EOF

@@ -1,1 +1,0 @@
-set switchbuf+=uselast

@@ -1,3 +1,0 @@
-" When you forgot to sudo before editing a file that requires root privileges
-" This lets you use w!! to do that after you opened the file already:
-cmap w!! w !sudo tee % >/dev/null

@@ -22,12 +22,12 @@ function! s:setup_js_html()
         \ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,' .
         \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
         \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
-        \ '{% *if .*%}:{% *else *%}:{% */if *%},' .
-        \ '{% *foreach .*%}:{% */foreach *%},' .
-        \ '{% *block .*%}:{% */block *%},' .
-        \ '{% *section .*%}:{% */section *%},' .
-        \ '{% *use .*%}:{% */use *%},' .
-        \ '{% *default .*%}:{% */default *%}')
+        \ '{% *if .*%}:{% *else *%}:{% *endif *%},' .
+        \ '{% *foreach .*%}:{% *endforeach *%},' .
+        \ '{% *block .*%}:{% *endblock *%},' .
+        \ '{% *section .*%}:{% *endsection *%},' .
+        \ '{% *use .*%}:{% *enduse *%},' .
+        \ '{% *default .*%}:{% *enddefault *%}')
 
     setlocal indentexpr=jshtml#get_indent()
     setlocal indentkeys=o,O,<Return>,<>>,{,},!^F
@@ -66,14 +66,14 @@ function! s:select_js_block(mode)
     call searchpos('{%', 'cbW', init_pos[1])
 
     let start_pos = getpos('.')
-    let search_result = searchpos('{% /', 'cW')
+    let search_result = searchpos('{% end', 'cW')
 
     while search_result != [0, 0]
 
         let close_tag_pos = getpos('.')
 
         let tag_line = getline(close_tag_pos[1])[close_tag_pos[2] - 1:]
-        let tag_parts = matchlist(tag_line, '^{% /\(.\{-}\)\s\+%}')
+        let tag_parts = matchlist(tag_line, '^{% end\(.\{-}\)\s\+%}')
         if !empty(tag_parts)
             let tag_name = tag_parts[1]
 
@@ -123,7 +123,7 @@ function! s:select_js_block(mode)
 
         endif
 
-        let search_result = searchpos('{% /', 'W')
+        let search_result = searchpos('{% end', 'W')
 
     endwhile
 
@@ -136,7 +136,7 @@ endfunction
 function! jshtml#get_indent()
 
     let curline = getline(v:lnum)
-    let tag_parts = matchlist(curline, '^\s*{% /\(.\{-}\)\s*%}')
+    let tag_parts = matchlist(curline, '^\s*{% end\(.\{-}\)\s*%}')
 
     if !empty(tag_parts)
         let tag_name = tag_parts[1]
@@ -169,6 +169,6 @@ function! s:search_js_tag_pair(tag_name, flags)
     return searchpairpos(
         \ '{%\s*'.a:tag_name.'\s*.\{-}%}',
         \ '',
-        \ '{%\s*/'.a:tag_name.'\s*%}',
+        \ '{%\s*end'.a:tag_name.'\s*%}',
         \ a:flags)
 endfunction
