@@ -37,9 +37,9 @@ require'nvim-treesitter.configs'.setup {
         ["ip"] = "@parameter.inner",
         ["aa"] = "@attribute.outer",
         ["ia"] = "@attribute.inner",
-        ["ah"] = "@assignment.outer",
-        ["lh"] = "@assignment.lhs",
-        ["rh"] = "@assignment.rhs",
+        --["ah"] = "@assignment.outer",
+        --["lh"] = "@assignment.lhs",
+        --["rh"] = "@assignment.rhs",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
@@ -49,9 +49,9 @@ require'nvim-treesitter.configs'.setup {
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
       selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
+        ['@parameter.outer'] = 'v',
+        ['@function.outer'] = 'V',
+        ['@class.outer'] = 'V',
       },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
@@ -100,4 +100,4 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.jshtml = "html"
+ft_to_parser.jshtml = "htmldjango"

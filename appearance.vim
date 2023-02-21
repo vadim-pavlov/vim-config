@@ -1,7 +1,7 @@
 " Enables Vim to show parts of the text in another font or color
 set termguicolors
 
-let g:everforest_background = 'medium'
+let g:everforest_background = 'hard'
 let g:everforest_better_performance = 1
 colorscheme everforest
 

@@ -15,6 +15,7 @@ Plug 'andymass/vim-matchup'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'kana/vim-textobj-user'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+Plug 'hynek/vim-python-pep8-indent'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -34,6 +35,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'windwp/nvim-ts-autotag'
+Plug 'j-hui/fidget.nvim'
 
 " All of Plugins must be added before this line
 " Adds plugins to &runtimepath
