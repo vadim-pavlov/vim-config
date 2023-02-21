@@ -6,7 +6,7 @@ let s:pathSeparator = !exists('+shellslash') || &shellslash ? '/' : '\'
 let s:configRoot = fnamemodify(resolve(expand('<sfile>:p')), ':p:h')
     \ . s:pathSeparator
 
-exe 'source ' s:configRoot . 'plugins.vim'
+exe 'source ' s:configRoot . 'plugins.lua'
 exe 'source ' s:configRoot . 'title.vim'
 exe 'source ' s:configRoot . 'scroll.vim'
 exe 'source ' s:configRoot . 'myripgrep.vim'
