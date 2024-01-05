@@ -51,12 +51,6 @@ nnoremap <silent> <leader>] :exe "resize +10"<CR>
 " Decreases height of the current window
 nnoremap <silent> <leader>[ :exe "resize -10"<CR>
 
-" Move with hjkl in insert mode
-inoremap <C-k> <C-o>gk
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-j> <C-o>gj
-
 " Semi-hard mode to break bad habits
 noremap <Up> <Nop>
 noremap <Down> <Nop>
