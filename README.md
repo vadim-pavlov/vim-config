@@ -1,6 +1,9 @@
-My personal neovim config
-==================
-To install the configuration files with all plugins simply run this command in the shell:
+# My personal neovim config
 
-	wget -O - https://github.com/vadim-pavlov/vim-config/raw/master/install.sh | sh
+To install the configuration files run:
 
+```
+cd ~/.config
+mv nvim nvim_backup
+git clone git@github.com:vadim-pavlov/vim-config.git nvim
+```
