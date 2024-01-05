@@ -8,6 +8,7 @@ _G.toggle_nvimtree_replacing = function()
     tree.close()
   else
     tree.open({
+      path = vim.fn.expand('%:p:h'),
       current_window = true,
       find_file = true,
     })
