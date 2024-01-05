@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the four listed parsers should always be installed)
-  ensure_installed = { "javascript", "python", "html", "help", "vim", "lua" },
+  ensure_installed = { "javascript", "python", "html", "help", "vim", "lua", "help", },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -10,9 +10,18 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = {},
+  ignore_install = {"help"},
+
+  autotag = {
+    enable = true,
+    filetypes = { "html" , "xml", "jshtml" },
+  },
 
   highlight = {
+    enable = true,
+  },
+
+  indent = {
     enable = true,
   },
 
@@ -27,19 +36,16 @@ require'nvim-treesitter.configs'.setup {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+        ["ak"] = "@condition.outer",
+        ["ik"] = "@condition.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
         ["ib"] = "@block.inner",
         ["ab"] = "@block.outer",
         ["iq"] = "@call.inner",
         ["aq"] = "@call.outer",
-        ["ap"] = "@parameter.outer",
-        ["ip"] = "@parameter.inner",
-        ["aa"] = "@attribute.outer",
-        ["ia"] = "@attribute.inner",
-        --["ah"] = "@assignment.outer",
-        --["lh"] = "@assignment.lhs",
-        --["rh"] = "@assignment.rhs",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
@@ -71,33 +77,58 @@ require'nvim-treesitter.configs'.setup {
         ["]f"] = "@function.outer",
         ["]c"] = "@class.outer",
         ["]b"] = "@block.outer",
-        ["]a"] = "@attribute.outer",
-        ["]p"] = "@parameter.outer",
-        ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+        ["]a"] = "@parameter.outer",
+        ["]t"] = "@tag.outer",
       },
       goto_next_end = {
         ["]F"] = "@function.inner",
         ["]C"] = "@class.inner",
         ["]B"] = "@block.inner",
-        ["]A"] = "@attribute.inner",
-        ["]P"] = "@parameter.inner",
+        ["]T"] = "@tag.inner",
+        ["]A"] = "@parameter.inner",
       },
       goto_previous_start = {
         ["[f"] = "@function.outer",
         ["[c"] = "@class.outer",
         ["[b"] = "@block.outer",
-        ["[a"] = "@attribute.outer",
-        ["[p"] = "@parameter.outer",
+        ["[t"] = "@tag.outer",
+        ["[a"] = "@parameter.outer",
       },
       goto_previous_end = {
         ["[F"] = "@function.inner",
         ["[C"] = "@class.inner",
         ["[B"] = "@block.inner",
-        ["[A"] = "@attribute.inner",
-        ["[P"] = "@parameter.inner",
+        ["[T"] = "@tag.inner",
+        ["[A"] = "@parameter.inner",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>xf"] = "@function.outer",
+        ["<leader>xc"] = "@class.outer",
+        ["<leader>xb"] = "@block.outer",
+        ["<leader>xa"] = "@parameter.inner",
+        ["<leader>xt"] = "@tag.outer",
+      },
+      swap_previous = {
+        ["<leader>xF"] = "@function.outer",
+        ["<leader>xC"] = "@class.outer",
+        ["<leader>xB"] = "@block.outer",
+        ["<leader>xT"] = "@tag.outer",
       },
     },
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gm", -- set to `false` to disable one of the mappings
+      node_incremental = "gm",
+      scope_incremental = false,
+      node_decremental = false,
+    },
+  },
+  matchup = {
+    enable = true,
+  },
 }
-local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.jshtml = "htmldjango"

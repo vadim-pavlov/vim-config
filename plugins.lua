@@ -24,19 +24,16 @@ return require('packer').startup(function(use)
         after = "nvim-treesitter",
         requires = "nvim-treesitter/nvim-treesitter",
     }
-    use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     use 'sainnhe/everforest'
     use 'neovim/nvim-lspconfig'
     use {
         'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        requires = { 'nvim-tree/nvim-web-devicons' },
     }
     use 'tweekmonster/braceless.vim'
     use 'machakann/vim-sandwich'
@@ -50,7 +47,6 @@ return require('packer').startup(function(use)
         end
     }
     use 'MarcWeber/vim-addon-local-vimrc'
-    use 'kana/vim-textobj-user'
     use {'liuchengxu/vim-clap', run = ':call clap#installer#force_download()' }
     use 'hynek/vim-python-pep8-indent'
 
@@ -64,14 +60,18 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'rafamadriz/friendly-snippets'
 
-    use 'tommcdo/vim-exchange'
     use 'kyoh86/vim-ripgrep'
-    use 'windwp/nvim-autopairs'
+    -- use 'windwp/nvim-autopairs'
 
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-ts-autotag'
     use 'j-hui/fidget.nvim'
+
+    use {
+      "pmizio/typescript-tools.nvim",
+      requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    }
 
     use {
         'goolord/alpha-nvim',

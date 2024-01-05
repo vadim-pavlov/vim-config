@@ -1,9 +1,7 @@
 
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', 'gh', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 local function filter(arr, func)
     -- Filter in place
@@ -139,7 +137,7 @@ require('lspconfig')['pyright'].setup{
     }
 }
 
-require('lspconfig')['tsserver'].setup{
+require("typescript-tools").setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
@@ -147,6 +145,9 @@ require('lspconfig')['tsserver'].setup{
         preferences = {
             importModuleSpecifierEnding = "js"
         }
+    },
+    settings = {
+        -- tsserver_logs = "verbose"
     }
 }
 

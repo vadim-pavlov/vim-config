@@ -1,3 +1,5 @@
+vim.diagnostic.config({ virtual_text = false })
+
 require('lspconfig').diagnosticls.setup{
     filetypes = { "python" },
     init_options = {
