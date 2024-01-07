@@ -14,6 +14,7 @@ set colorcolumn=80
 " Shows the line number relative to the line with the cursor in front of each
 " line
 set relativenumber
+set nu relativenumber
 
 " Displays display unprintable characters
 set list

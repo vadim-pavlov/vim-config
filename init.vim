@@ -7,6 +7,7 @@ let s:configRoot = fnamemodify(resolve(expand('<sfile>:p')), ':p:h')
     \ . s:pathSeparator
 
 exe 'source ' s:configRoot . 'plugins.lua'
+exe 'source ' s:configRoot . 'keys.vim'
 exe 'source ' s:configRoot . 'backup.vim'
 exe 'source ' s:configRoot . 'title.vim'
 exe 'source ' s:configRoot . 'scroll.vim'
@@ -27,5 +28,6 @@ exe 'source ' s:configRoot . 'autopairs.lua'
 exe 'source ' s:configRoot . 'gitsigns.lua'
 exe 'source ' s:configRoot . 'clap.vim'
 exe 'source ' s:configRoot . 'fidget.lua'
-exe 'source ' s:configRoot . 'keys.vim'
 exe 'source ' s:configRoot . 'swap.vim'
+exe 'source ' s:configRoot . 'spell.vim'
+exe 'source ' s:configRoot . 'debug.lua'
