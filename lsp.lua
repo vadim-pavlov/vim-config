@@ -1,4 +1,4 @@
-vim.keymap.set('n', 'gh', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
@@ -28,6 +28,11 @@ local function custom_on_publish_diagnostics(a, params, client_id, c, config)
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
+local function on_lsp_list(options)
+  vim.fn.setqflist({}, 'r', options)
+  vim.api.nvim_command('cfirst')
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -37,15 +42,15 @@ local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>lr', function() vim.lsp.buf.references(nil, {on_list=on_lsp_list}) end, bufopts)
 
     if client.name == "pyright" then
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
@@ -85,7 +90,7 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<C-e>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.abort()

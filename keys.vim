@@ -23,7 +23,7 @@ nnoremap \ :Rg<SPACE>
 nnoremap j gj
 nnoremap k gk
 
-" Gets rid of the  help key that you will invaribly hit constantly while
+" Gets rid of the  help key that you will invariably hit constantly while
 " aiming for escape:
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -36,15 +36,9 @@ inoremap jj <ESC>
 nnoremap ; :
 
 " Displays the next error from the quickfix list
-map <C-d> :cn<CR>
+map <C-j> :cn<CR>
 " Displays the previous error from the quickfix list
-map <C-a> :cp<CR>
-
-" Quick move around split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+map <C-k> :cp<CR>
 
 " Increases height of the current window
 nnoremap <silent> <leader>] :exe "resize +10"<CR>
