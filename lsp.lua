@@ -28,36 +28,6 @@ local function custom_on_publish_diagnostics(a, params, client_id, c, config)
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
-local function on_lsp_list(options)
-  vim.fn.setqflist({}, 'r', options)
-  vim.api.nvim_command('cfirst')
-end
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<leader>lr', function() vim.lsp.buf.references(nil, {on_list=on_lsp_list}) end, bufopts)
-
-    if client.name == "pyright" then
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
-    end
-
-end
-
 local lsp_flags = {
     -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
@@ -170,7 +140,6 @@ vim.keymap.set({"i", "s"}, "<C-H>", function() luasnip.jump(-1) end, {silent = t
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
 
@@ -185,7 +154,6 @@ require('lspconfig')['pyright'].setup{
 }
 
 require("typescript-tools").setup{
-    on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
     settings = {
@@ -201,3 +169,42 @@ require("typescript-tools").setup{
 
 require('lspconfig').jsonls.setup{}
 require('lspconfig').cssls.setup{}
+
+local function on_lsp_list(options)
+  vim.fn.setqflist({}, 'r', options)
+  vim.api.nvim_command('cfirst')
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    local bufopts = { noremap=true, silent=true, buffer = ev.buf }
+
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
+
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client.name == "pyright" then
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+    end
+
+  end,
+})
+
+local defaultRefHandler = vim.lsp.handlers["textDocument/references"]
+vim.lsp.handlers["textDocument/references"] = vim.lsp.with(
+    defaultRefHandler,
+    {on_list=on_lsp_list}
+)
