@@ -156,8 +156,17 @@ require('lspconfig')['pyright'].setup{
 require("typescript-tools").setup{
     flags = lsp_flags,
     capabilities = capabilities,
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "jshtml",
+    },
     settings = {
-        -- tsserver_logs = "verbose"
+        -- tsserver_logs = "verbose",
         tsserver_file_preferences = {
             importModuleSpecifierEnding = "js",
             autoImportFileExcludePatterns = {
