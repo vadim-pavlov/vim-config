@@ -16,9 +16,12 @@ dapui.setup{
 }
 
 
+require("nvim-dap-virtual-text").setup({ virt_text_pos = "eol", })
+
 require("dap-python").setup("python")
-require("nvim-dap-virtual-text").setup({
-    virt_text_pos = "eol",
+require("dap-vscode-js").setup({
+    adapters = { 'pwa-chrome' },
+    debugger_path = "/home/vadim/vscode-js-debug",
 })
 
 local dap = require("dap")
