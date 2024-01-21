@@ -31,6 +31,8 @@ vnoremap <F1> <ESC>
 
 " A shortcut to exit back to normal mode
 inoremap jj <ESC>
+" Paste and autoformat from the insert mode
+inoremap <C-v> <C-r><C-p>"
 
 " A shortcut for ':' key
 nnoremap ; :
