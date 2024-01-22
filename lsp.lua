@@ -205,8 +205,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    if client.name == "typescript-tools" then
+        vim.keymap.set('n', '<leader>lu', function()
+            require("typescript-tools.api").file_references(false);
+        end, bufopts)
+    end
+
     if client.name == "pyright" then
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+            custom_on_publish_diagnostics, {})
     end
 
   end,
