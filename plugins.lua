@@ -100,6 +100,8 @@ return require('packer').startup(function(use)
       "microsoft/vscode-js-debug",
       run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
     }
+    use 'tpope/vim-repeat'
+    use 'ggandor/leap.nvim'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Must be at the end after all plugins
     if packer_bootstrap then

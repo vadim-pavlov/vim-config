@@ -14,9 +14,9 @@ set pastetoggle=<F2>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Substitute all occurrences of the word under the cursor
-nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 " Search the word under the cursor in all files inside the working directory
-nnoremap <leader>S :Rg -w "<C-r><C-w>"<Left><Left>
+nnoremap <leader>fw :Rg -w "<C-r><C-w>"<Left><Left>
 nnoremap \ :Rg<SPACE>
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
@@ -84,10 +84,6 @@ nnoremap <leader>  :wa<CR>
 
 " selects the last changed text
 nnoremap gp `[v`]
-
-" Disable ib, is, ab and as text objects provided by sandwitch in favor of
-" similar objects from trgets.vim
-let g:textobj_sandwich_no_default_key_mappings = 1
 
 let g:wordmotion_mappings = {
 \ 'w' : '<leader>w',
