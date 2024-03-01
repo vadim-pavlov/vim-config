@@ -65,9 +65,15 @@ nnoremap <leader>ga <cmd>Git add .<cr>
 nnoremap <leader>gc <cmd>Git commit -v<cr>
 nnoremap <leader>gp <cmd>Git push origin<cr>
 
-nnoremap <leader>ff <cmd>Clap files<cr>
-nnoremap <leader>fg <cmd>Clap grep<cr>
-nnoremap <leader>fb <cmd>Clap buffers<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fs <cmd>Telescope grep_string<cr>
+nnoremap <leader>fz <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>fq <cmd>Telescope quickfix<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 nnoremap <leader>- <cmd>lua toggle_nvimtree_replacing()<CR>
 " copies the current file path to the default register
 nnoremap <leader>fc :let @+ = expand("%")<cr>

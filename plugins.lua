@@ -47,8 +47,13 @@ return require('packer').startup(function(use)
         end
     }
     use 'MarcWeber/vim-addon-local-vimrc'
-    use {'liuchengxu/vim-clap', run = ':call clap#installer#force_download()' }
     use 'hynek/vim-python-pep8-indent'
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.5',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
 
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
