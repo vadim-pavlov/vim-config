@@ -120,7 +120,6 @@ return require('packer').startup(function(use)
         'kenunq/django-neotest',
       }
     }
-    -- use 'klen/nvim-test'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Must be at the end after all plugins
     if packer_bootstrap then
