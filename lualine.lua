@@ -1,3 +1,14 @@
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed
+    }
+  end
+end
+
 require'lualine'.setup {
     options = {
         theme = 'everforest'
@@ -9,6 +20,7 @@ require'lualine'.setup {
                 fmt = function(str) return str:sub(1,1) end
             }
         },
+        lualine_b = { {'diff', source = diff_source}, },
         lualine_c = {
             {
                 'filename',

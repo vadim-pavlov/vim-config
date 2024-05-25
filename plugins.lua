@@ -92,8 +92,10 @@ return require('packer').startup(function(use)
             require'alpha'.setup(require'alpha.themes.startify'.config)
         end
     }
-
-    use 'mfussenegger/nvim-dap'
+    use {
+        'mfussenegger/nvim-dap',
+        requires = {'nvim-neotest/nvim-nio'}
+    }
     use {
         "rcarriga/nvim-dap-ui",
         requires = {"mfussenegger/nvim-dap"}
@@ -107,6 +109,18 @@ return require('packer').startup(function(use)
     }
     use 'tpope/vim-repeat'
     use 'ggandor/leap.nvim'
+    use {
+      'nvim-neotest/neotest',
+      requires = {
+        'nvim-neotest/nvim-nio',
+        'nvim-lua/plenary.nvim',
+        'antoinemadec/FixCursorHold.nvim',
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-neotest/neotest-python',
+        'kenunq/django-neotest',
+      }
+    }
+    -- use 'klen/nvim-test'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Must be at the end after all plugins
     if packer_bootstrap then
