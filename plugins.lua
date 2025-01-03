@@ -120,6 +120,19 @@ return require('packer').startup(function(use)
         'kenunq/django-neotest',
       }
     }
+
+    use {
+      "epwalsh/obsidian.nvim",
+      tag = "*",  -- recommended, use latest release instead of latest commit
+      requires = {
+        -- Required.
+        "nvim-lua/plenary.nvim",
+
+        -- see below for full list of optional dependencies 👇
+      }
+    }
+
+    use 'rcarriga/nvim-notify'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Must be at the end after all plugins
     if packer_bootstrap then

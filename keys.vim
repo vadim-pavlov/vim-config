@@ -14,7 +14,7 @@ set pastetoggle=<F2>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Substitute all occurrences of the word under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>rw :%s/\<<C-r><C-w>\>//g<Left><Left>
 " Search the word under the cursor in all files inside the working directory
 nnoremap <leader>fw :Rg -w "<C-r><C-w>"<Left><Left>
 nnoremap \ :Rg<SPACE>
@@ -31,8 +31,6 @@ vnoremap <F1> <ESC>
 
 " A shortcut to exit back to normal mode
 inoremap jj <ESC>
-" Paste and autoformat from the insert mode
-inoremap <C-v> <C-r><C-p>"
 
 " A shortcut for ':' key
 nnoremap ; :
@@ -41,6 +39,11 @@ nnoremap ; :
 map <C-j> :cn<CR>
 " Displays the previous error from the quickfix list
 map <C-k> :cp<CR>
+
+" Ctrl backspace for deleting previous word in the insert mode
+imap <C-BS> <C-W>
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
 
 " Increases height of the current window
 nnoremap <silent> <leader>] :exe "resize +10"<CR>
@@ -60,10 +63,10 @@ tnoremap <Esc> <C-\><C-n>
 
 " Disable Ctrl-t to ease it usage in combination with other keys
 noremap <C-t> <Nop>
-
-nnoremap <leader>ga <cmd>Git add .<cr>
-nnoremap <leader>gc <cmd>Git commit -v<cr>
-nnoremap <leader>gp <cmd>Git push origin<cr>
+nnoremap <leader>gc <cmd>execute "silent Git add ." <bar> G commit<cr>
+nnoremap <leader>gp <cmd>botright Git! push \| wincmd p<cr>
+nnoremap <leader>gg <cmd>Gedit :<cr>
+nnoremap <leader>gb <cmd>Git blame<cr>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -78,15 +81,15 @@ nnoremap <leader>- <cmd>lua toggle_nvimtree_replacing()<CR>
 " copies the current file path to the default register
 nnoremap <leader>fc :let @+ = expand("%")<cr>
 
-" delete without overriding the default register
-nnoremap <leader>d "0d
-vnoremap <leader>d "0d
-
 " paste without overriding the default register
-xnoremap <leader>p "0p
+map <leader>p "0p
 
 " save the buffer if modified
-nnoremap <leader>  :wa<CR>
+nnoremap <leader><leader> :wa<CR>
+
+" paste without overriding the default register
+nnoremap <leader>qq :q<CR>
+nnoremap <leader>qw :w<CR>
 
 " selects the last changed text
 nnoremap gp `[v`]
@@ -99,3 +102,26 @@ let g:wordmotion_mappings = {
 \ 'aw' : 'a<leader>w',
 \ 'iw' : 'i<leader>w',
 \ }
+
+
+" Paste and autoformat from the insert mode
+" inoremap <C-v> <C-r><C-p>"
+lua << EOF
+
+local function check_and_remove_empty_line()
+    local line = vim.fn.getline('.')
+    if string.match(line, "^%s+$") ~= nil then
+        local key = vim.api.nvim_replace_termcodes('<ESC>kJA', true, true, true)
+        vim.api.nvim_feedkeys(key, 'i', true)
+    end
+end
+
+local function paste_in_insert_with_autofromat()
+    local key = vim.api.nvim_replace_termcodes('<C-r><C-p>"', true, true, true)
+    vim.api.nvim_feedkeys(key, 'i', true)
+    vim.schedule(check_and_remove_empty_line)
+end
+
+vim.keymap.set('i', '<C-v>', paste_in_insert_with_autofromat, { noremap = true, silent = true, desc = "Paste and autoformat" })
+
+EOF

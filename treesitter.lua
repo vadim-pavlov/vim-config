@@ -1,3 +1,20 @@
+local DEFAULT_SELECT_MODES = {
+  ['@parameter.outer'] = 'v',
+  ['@assignment.outer'] = 'V',
+  ['@function.outer'] = 'v',
+  ['@class.outer'] = 'V',
+}
+
+local PYTHON_SELECT_MODES = {
+  ['@parameter.outer'] = 'v',
+  ['@assignment.outer'] = 'V',
+  ['@function.inner'] = 'V',
+  ['@function.outer'] = 'V',
+  ['@block.inner'] = 'V',
+  ['@block.outer'] = 'V',
+  ['@class.outer'] = 'V',
+}
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the four listed parsers should always be installed)
   ensure_installed = { "javascript", "python", "html", "help", "vim", "lua", "help", },
@@ -46,6 +63,9 @@ require'nvim-treesitter.configs'.setup {
         ["aq"] = "@call.outer",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
+        ["aj"] = "@assignment.lhs",
+        ["ak"] = "@assignment.outer",
+        ["al"] = "@assignment.rhs",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
@@ -54,11 +74,12 @@ require'nvim-treesitter.configs'.setup {
       -- * method: eg 'v' or 'o'
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
-      selection_modes = {
-        ['@parameter.outer'] = 'v',
-        ['@function.outer'] = 'V',
-        ['@class.outer'] = 'V',
-      },
+      selection_modes = function()
+        if vim.bo.filetype == "python" then
+          return PYTHON_SELECT_MODES
+        end
+        return DEFAULT_SELECT_MODES
+      end,
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
       -- whitespace has priority in order to act similarly to eg the built-in
@@ -77,7 +98,7 @@ require'nvim-treesitter.configs'.setup {
         ["]f"] = "@function.outer",
         ["]c"] = "@class.outer",
         ["]b"] = "@block.outer",
-        ["]a"] = "@parameter.outer",
+        ["]a"] = "@parameter.inner",
         ["]t"] = "@tag.outer",
       },
       goto_next_end = {
@@ -85,21 +106,21 @@ require'nvim-treesitter.configs'.setup {
         ["]C"] = "@class.inner",
         ["]B"] = "@block.inner",
         ["]T"] = "@tag.inner",
-        ["]A"] = "@parameter.inner",
+        ["]A"] = "@parameter.outer",
       },
       goto_previous_start = {
         ["[f"] = "@function.outer",
         ["[c"] = "@class.outer",
         ["[b"] = "@block.outer",
         ["[t"] = "@tag.outer",
-        ["[a"] = "@parameter.outer",
+        ["[a"] = "@parameter.inner",
       },
       goto_previous_end = {
         ["[F"] = "@function.inner",
         ["[C"] = "@class.inner",
         ["[B"] = "@block.inner",
         ["[T"] = "@tag.inner",
-        ["[A"] = "@parameter.inner",
+        ["[A"] = "@parameter.outer",
       },
     },
     swap = {
