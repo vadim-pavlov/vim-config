@@ -87,9 +87,9 @@ map <leader>p "0p
 " save the buffer if modified
 nnoremap <leader><leader> :wa<CR>
 
-" paste without overriding the default register
 nnoremap <leader>qq :q<CR>
 nnoremap <leader>qw :w<CR>
+nnoremap <leader>qo :%bd\|e#<CR>
 
 " selects the last changed text
 nnoremap gp `[v`]
