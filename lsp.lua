@@ -229,7 +229,7 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(
 local defaultDefHandler = vim.lsp.handlers["textDocument/definition"]
 
 local function quickDefHandler(err, result, ctx, config)
-  if #result > 1 then
+  if result and #result > 1 then
     result = {result[1]}
   end
   defaultDefHandler(err, result, ctx, config)

@@ -15,9 +15,6 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Substitute all occurrences of the word under the cursor
 nnoremap <leader>rw :%s/\<<C-r><C-w>\>//g<Left><Left>
-" Search the word under the cursor in all files inside the working directory
-nnoremap <leader>fw :Rg -w "<C-r><C-w>"<Left><Left>
-nnoremap \ :Rg<SPACE>
 " Makes j and k yes work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
 nnoremap j gj
