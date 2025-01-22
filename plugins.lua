@@ -72,7 +72,7 @@ return require('packer').startup(function(use)
 
     use 'saadparwaiz1/cmp_luasnip'
 
-    use 'mangelozzi/rgflow.nvim'
+    use 'wincent/ferret'
     use 'windwp/nvim-autopairs'
 
     use 'tpope/vim-fugitive'
