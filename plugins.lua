@@ -12,6 +12,8 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+    use 'nvim-tree/nvim-web-devicons'
+    use 'stevearc/oil.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -24,17 +26,12 @@ return require('packer').startup(function(use)
         after = "nvim-treesitter",
         requires = "nvim-treesitter/nvim-treesitter",
     }
-    use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     use 'sainnhe/everforest'
     use 'neovim/nvim-lspconfig'
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = { 'nvim-tree/nvim-web-devicons' },
-    }
     use 'tweekmonster/braceless.vim'
     use 'machakann/vim-sandwich'
     use 'ap/vim-css-color'

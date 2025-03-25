@@ -77,7 +77,7 @@ nnoremap <leader>fq <cmd>Telescope quickfix<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-nnoremap <leader>- <cmd>lua toggle_nvimtree_replacing()<CR>
+nnoremap <leader>- <cmd>Oil<CR>
 " copies the current file path to the default register
 nnoremap <leader>fc :let @+ = expand("%")<cr>
 
