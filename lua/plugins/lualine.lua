@@ -11,35 +11,49 @@ end
 
 return {
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      options = {
-        theme = 'everforest'
-      },
-      sections = {
-        lualine_a = {
-          {
-            'mode',
-            fmt = function(str) return str:sub(1,1) end
-          }
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "folke/noice.nvim",
+    },
+    opts = function()
+      return {
+        options = {
+          theme = "everforest"
         },
-        lualine_b = { {'diff', source = diff_source}, },
-        lualine_c = {
-          {
-            'filename',
-            path = 1,
-          }
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+              fmt = function(str) return str:sub(1,1) end
+            }
+          },
+          lualine_b = { {'diff', source = diff_source}, },
+          lualine_c = {
+            {
+              'filename',
+              path = 1,
+            }
+          },
+          lualine_x = {
+            {
+              require("noice").api.statusline.mode.get,
+              cond = require("noice").api.statusline.mode.has,
+            },
+            {
+              'filetype',
+            },
+          },
         },
-      },
-      inactive_sections = {
-        lualine_c = {
-          {
-            'filename',
-            path = 1,
-          }
+        inactive_sections = {
+          lualine_c = {
+            {
+              'filename',
+              path = 1,
+            }
+          },
         },
-      },
-    }
+      }
+    end,
   }
 }
