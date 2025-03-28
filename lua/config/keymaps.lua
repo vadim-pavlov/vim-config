@@ -51,9 +51,10 @@ map('n', '<leader>fc', set_current_file_path_to_default_reg, { desc = "Copy curr
 
 map({'n', 'v'}, '<leader>p', '"0p', { desc = "Paste without overriding the default register" })
 
-map('n', '<leader><leader>', ':wa<CR>', { silent = true, desc = "Saves all buffers" })
+map('n', '<leader>sa', ':wa<CR>', { silent = true, desc = "Saves all buffers" })
+map('n', '<leader>ss', ':w<CR>', { silent = true, desc = "Saves the current file" })
 map('n', '<leader>qq', ':q<CR>', { silent = true, desc = "Quits the current window" })
-map('n', '<leader>qw', ':w<CR>', { silent = true, desc = "Writes the current file" })
+map('n', '<leader>qa', ':qa<CR>', { silent = true, desc = "Quits all windows" })
 map('n', '<leader>qo', [[:%bd | e#<CR>]], { silent = true, desc = "Deletes all but current buffer" })
 
 map('n', 'gp', '`[v`]', { desc = "Select last changed text" })
