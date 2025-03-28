@@ -49,7 +49,7 @@ end
 
 map('n', '<leader>fc', set_current_file_path_to_default_reg, { desc = "Copy current file path" })
 
-map('n', '<leader>p', '"0p', { desc = "Paste without overriding the default register" })
+map({'n', 'v'}, '<leader>p', '"0p', { desc = "Paste without overriding the default register" })
 
 map('n', '<leader><leader>', ':wa<CR>', { silent = true, desc = "Saves all buffers" })
 map('n', '<leader>qq', ':q<CR>', { silent = true, desc = "Quits the current window" })
