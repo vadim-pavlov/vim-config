@@ -25,28 +25,20 @@ local function custom_on_publish_diagnostics(a, params, client_id, c, config)
 end
 
 
-local function on_lsp_list(options)
+local function on_lsp_refs(options)
   vim.fn.setqflist({}, 'r', options)
-  vim.api.nvim_command('cfirst')
+  vim.cmd.cfirst()
 end
 
-
-local defaultRefHandler = vim.lsp.handlers["textDocument/references"]
-vim.lsp.handlers["textDocument/references"] = vim.lsp.with(
-defaultRefHandler,
-{on_list=on_lsp_list}
-)
-
-local defaultDefHandler = vim.lsp.handlers["textDocument/definition"]
-
-local function quickDefHandler(err, result, ctx, config)
-  if result and #result > 1 then
-    result = {result[1]}
-  end
-  defaultDefHandler(err, result, ctx, config)
+local function on_lsp_defs(options)
+  local modified_options = {
+    title = options.title,
+    items = { options.items[1] },
+    context = options.context
+  }
+  vim.fn.setqflist({}, 'r', modified_options)
+  vim.cmd.cfirst()
 end
-
-vim.lsp.handlers["textDocument/definition"] = quickDefHandler
 
 return {
 
@@ -124,14 +116,14 @@ return {
           local map = vim.keymap.set;
 
           map('n', '<leader>lD', vim.lsp.buf.declaration, { desc = "Goto Declaration" } )
-          map('n', '<leader>ld', vim.lsp.buf.definition, { desc = "Goto Definition" } )
+          map('n', '<leader>ld', function() vim.lsp.buf.definition({on_list = on_lsp_defs}) end, { desc = "Goto Definition" } )
           map('n', '<leader>lh', vim.lsp.buf.hover, { desc = "Hover" } )
           map('n', '<leader>li', vim.lsp.buf.implementation, { desc = "Goto Implementation" } )
           map('n', '<leader>ls', vim.lsp.buf.signature_help, { desc = "Signature Help" } )
           map('n', '<leader>lt', vim.lsp.buf.type_definition, { desc = "Goto type Definition" } )
           map('n', '<leader>ln', vim.lsp.buf.rename, { desc = "Rename" } )
           map({'n', 'v'}, '<leader>la', vim.lsp.buf.code_action, { desc = "Code Action" } )
-          map('n', '<leader>lr', vim.lsp.buf.references, { desc = "References" } )
+          map('n', '<leader>lr', function(context) vim.lsp.buf.references(context, {on_list = on_lsp_refs}) end, { desc = "References" } )
           map('n', '<leader>le', vim.diagnostic.open_float)
           map('n', '[d', vim.diagnostic.goto_prev)
           map('n', ']d', vim.diagnostic.goto_next)
@@ -139,7 +131,8 @@ return {
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           if client.name == "pyright" then
             vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            custom_on_publish_diagnostics, {})
+              custom_on_publish_diagnostics, {}
+            )
           end
 
         end,
