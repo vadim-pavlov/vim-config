@@ -178,7 +178,7 @@ return {
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           if client.name == "typescript-tools" then
             vim.keymap.set('n', '<leader>lu', function()
-              require("typescript-tools.api").file_references(false);
+              require("typescript-tools.api").file_references(false, {on_list = on_lsp_refs});
             end, bufopts)
           end
         end,
